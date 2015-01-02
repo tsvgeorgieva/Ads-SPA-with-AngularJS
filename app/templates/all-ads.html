@@ -1,0 +1,21 @@
+<div class="row">
+<div class="col-sm-9" ng-controller="MainController">
+	<div class="container well" ng-repeat="ad in ads">
+		<div class="row">
+			<h4 class="col-sm-9">{{ad.title}}</h4>
+			<div class="col-sm-3">
+				<div class="pull-right">
+					{{ad.date | date:'d-MMM-yyyy'}}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<img src="" ng-src="{{ad.imageDataUrl || constants.defaultImage}}"/>
+			</div>
+			<div class="col-sm-8">{{ad.text}}</div>
+		</div>
+	</div>
+</div>
+<div class="col-sm-3">Filters</div>
+</div>
