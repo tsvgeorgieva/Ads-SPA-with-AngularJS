@@ -1,0 +1,7 @@
+.navbar-default{
+	background: #3e3f3a;
+}
+
+.navbar-nav >li>a{
+	text-shadow:none;
+}
