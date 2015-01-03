@@ -1,5 +1,5 @@
-<div class="row">
-	<ul class="col-md-9" ng-controller="MainController">
+<div class="row" ng-controller="MainController">
+	<ul class="col-md-9">
 		<li class="panel panel-primary" ng-repeat="ad in ads">
 			<div class="panel-heading">
 				<div class="panel-title">
@@ -31,5 +31,30 @@
 			</div>
 		</li>
 	</ul>
-	<div class="col-md-3">Filters</div>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Categories
+				</div>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-pills nav-stacked">
+				  <li ng-repeat="category in categories" ng-class="{'active': category.id == selectedCategory}" id="category{{category.id}}"><a ng-click="onFilterClicked(selectedTown, category.id)">{{category.name}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Towns
+				</div>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-pills nav-stacked">
+				  <li ng-repeat="town in towns" ng-class="{'active': town.id == selectedTown}"><a ng-click="onFilterClicked(town.id, selectedCategory)">{{town.name}}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
