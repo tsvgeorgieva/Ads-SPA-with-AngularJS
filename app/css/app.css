@@ -1,7 +1,3 @@
-body{
-	padding-top: 70px;
-}
-
 .navbar-default{
 	background: #3e3f3a;
 }
@@ -10,9 +6,23 @@ body{
 	text-shadow:none;
 }
 
-img {
-	width: 100%;
-	height:100%;
-	max-width: 150px;
-	max-height: 150px;
+div{
+	text-align: justify;
+    text-justify: inter-word;
+}
+
+ul li{
+	list-style: none;
+}
+
+.panel-footer{
+	background-color: #337ab7;
+	text-color:white;
+	text-shadow:none;
+}
+
+@media (max-width: 768px) {
+	.img-responsive{
+		margin: 0 auto;
+	}
 }

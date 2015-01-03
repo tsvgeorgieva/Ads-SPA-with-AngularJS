@@ -20,6 +20,19 @@ adsModule.factory('mainData', function($http, constants){
 		});
 	}
 
+	function getAllTowns(success, error){
+		$http({
+			method: 'GET',
+			url: constants.baseUrl + 'towns'
+		})
+		.success(function (data, status, headers, config) {
+			success(data, status, headers(), config);
+		})
+		.error(function (data, status, headers, config) {
+			error(data, status, headers(), config);
+		});
+	}
+
 	return{
 		getAllAds: getAllAds
 	}
