@@ -1,12 +1,16 @@
 {
-  "name": "angularjs-seed",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "name": "ads-spa-with-angular",
+  "description": "A web site for Online Ads Publishing as single page application (SPA) using HTML5 and AngularJS",
+  "repository": "https://github.com/tsvgeorgieva/Ads-SPA-with-AngularJS",
   "devDependencies": {
     "phantomjs" : "~1.9",
     "karma" : "~0.10",
     "karma-junit-reporter" : "~0.1",
     "karma-jasmine" : "~0.1",
-    "protractor" : "~0.17.0"
+    "protractor" : "~0.17.0",
+	"angular":"*",
+	"angular-route":"*",
+	"angular-resource":"*",
+	"angular-local-storage":"*"
   }
 }
