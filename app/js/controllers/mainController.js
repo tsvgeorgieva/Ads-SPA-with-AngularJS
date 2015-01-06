@@ -1,21 +1,9 @@
 adsModule.controller('MainController', function($scope, mainData, constants,$log){
 	$scope.constants = constants;
-	$scope.ready = false;
 	$scope.noAds = false;
 
 	// TODO
 	$scope.isLoggedIn = false;
-
-
-	mainData.getAds(
-		function success(data, status, headers, config){
-			initializeAds(data)
-		}, 
-		function error(data, status, headers, config){
-			$log.error(data);
-		},
-		1
-	);
 
 	mainData.getAllTowns(
 		function success(data, status, headers, config){
@@ -63,6 +51,25 @@ adsModule.controller('MainController', function($scope, mainData, constants,$log
 		} else{
 			$scope.ads = data.ads;
 		}
-		$scope.ready = true;
 	}
+
+
+	 $scope.adsParams = {
+          'startPage' : constants.defaultStartPage,
+          'pageSize' : constants.defaultPageSize
+      };
+
+      $scope.reloadAds = function() {
+          mainData.getAds(
+              $scope.adsParams,
+              function success(data) {
+                  $scope.ads = data;
+              },
+              function error(err) {
+                  console.log(err);
+              }
+          );
+      };
+
+      $scope.reloadAds();
 });

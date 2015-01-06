@@ -1,15 +1,12 @@
 <div class="row" ng-controller="MainController">
 	<div class="col-md-9">
-		<div class="row">
-			<img src="images/loading.gif" alt="loading" ng-hide="ready" id="loadingImg" class="img-responsive"/>
-		</div>
 		<div class="row" ng-hide="!noAds">
 			<h1>No ads available.</h1>
 			<p ng-hide="isLoggedIn">To add a new ad, please <a href="#/login">login</a></p>
 			<p ng-hide="!isLoggedIn">To add a new ad, <a href="#/user/add">click here</a></p>
 		</div>
 		<ul ng-cloak>
-			<li class="panel panel-black" ng-repeat="ad in ads">
+			<li class="panel panel-primary" ng-repeat="ad in ads.ads">
 				<div class="panel-heading">
 					<div class="panel-title">
 						<div class="row">
@@ -33,9 +30,13 @@
 				</div>
 			</li>
 		</ul>
+		<pagination total-items="ads.numItems" ng-model="adsParams.startPage"
+		  items-per-page="adsParams.pageSize" ng-change="reloadAds()"
+		  max-size="9" boundary-links="true">
+		</pagination>
 	</div>
 	<div class="col-md-3">
-		<div class="panel panel-primary">
+		<div class="panel panel-black">
 			<div class="panel-heading">
 				<div class="panel-title">Categories</div>
 			</div>
@@ -47,7 +48,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="panel panel-primary">
+		<div class="panel panel-black">
 			<div class="panel-heading">
 				<div class="panel-title">Towns</div>
 			</div>

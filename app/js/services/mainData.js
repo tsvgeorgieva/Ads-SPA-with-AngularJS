@@ -1,4 +1,4 @@
-adsModule.factory('mainData', function($http, constants){
+adsModule.factory('mainData', function($http, constants, $resource){
 	function getAds(success, error, startPage, pageSize){
 		getAdsWithFilters(success, error, 0, 0, startPage, pageSize);
 	}
@@ -37,7 +37,7 @@ adsModule.factory('mainData', function($http, constants){
 			error(data, status, headers(), config);
 		});
 	}
-
+		
 	function getAllTowns(success, error){
 		$http({
 			method: 'GET',
@@ -64,8 +64,19 @@ adsModule.factory('mainData', function($http, constants){
 		});
 	}
 
+	var adsResource = $resource(
+        constants.baseUrl + '/ads',
+        null,
+        {
+            'getAll': {method:'GET'}
+        }
+    );
+	
+
 	return{
-		getAds: getAds,
+		getAds: function(params, success, error) {
+	                return adsResource.getAll(params, success, error);
+	            },
 		getAllTowns: getAllTowns,
 		getAllCategories: getAllCategories,
 		getAdsWithFilters: getAdsWithFilters
