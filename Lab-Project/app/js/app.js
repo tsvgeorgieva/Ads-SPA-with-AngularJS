@@ -21,4 +21,9 @@ app.config(function ($routeProvider) {
         templateUrl: 'templates/register.html',
         controller: 'RegisterController'
     });
+    
+    $routeProvider.otherwise(
+        { redirectTo: '/' }
+    );
+
 });
