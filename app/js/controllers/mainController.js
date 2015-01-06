@@ -8,7 +8,7 @@ adsModule.controller('MainController', function($scope, mainData, constants,$log
 		function error(data, status, headers, config){
 			$log.error(data);
 		},
-		2
+		1
 	);
 
 	mainData.getAllTowns(
