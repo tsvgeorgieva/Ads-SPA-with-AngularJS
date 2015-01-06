@@ -1,5 +1,21 @@
 adsModule.factory('mainData', function($http, constants){
-	function getAllAds(success, error, startPage, pageSize){
+	function getAds(success, error, startPage, pageSize){
+		getAdsWithFilters(success, error, 0, 0, startPage, pageSize);
+	}
+
+	function getAdsWithFilters(success, error, townId, categoryId, startPage, pageSize){
+		var url = constants.baseUrl + 'ads';
+		var noFilters = false;
+		if(townId > 0 && categoryId > 0){
+			url = url + '?townid='+ townId +'&categoryid=' + categoryId;
+		} else if(townId > 0){
+			url = url + '?townid='+ townId;
+		} else if(categoryId > 0){
+			url = url + '?categoryid=' + categoryId;
+		} else{
+			noFilters = true;
+		}
+
 		if(!pageSize){
 			pageSize = constants.defaultPageSize;
 		}
@@ -8,27 +24,7 @@ adsModule.factory('mainData', function($http, constants){
 			startPage = constants.defaultStartPage;
 		}
 
-		$http({
-			method: 'GET',
-			url: constants.baseUrl + 'ads?pagesize=' + pageSize + '&startpage=' + startPage
-		})
-		.success(function (data, status, headers, config) {
-			success(data, status, headers(), config);
-		})
-		.error(function (data, status, headers, config) {
-			error(data, status, headers(), config);
-		});
-	}
-
-	function getAdsWithFilters(success, error, townId, categoryId){
-		var url = constants.baseUrl + 'ads';
-		if(townId > 0 && categoryId > 0){
-			url = url + '?townid='+ townId +'&categoryid=' + categoryId;
-		} else if(townId > 0){
-			url = url + '?townid='+ townId;
-		} else{
-			url = url + '?categoryid=' + categoryId;
-		}
+		url = url + (noFilters? '?' : '&') + 'pagesize=' + pageSize + '&startpage=' + startPage;
 
 		$http({
 			method: 'GET',
@@ -69,7 +65,7 @@ adsModule.factory('mainData', function($http, constants){
 	}
 
 	return{
-		getAllAds: getAllAds,
+		getAds: getAds,
 		getAllTowns: getAllTowns,
 		getAllCategories: getAllCategories,
 		getAdsWithFilters: getAdsWithFilters

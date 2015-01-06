@@ -21,6 +21,9 @@ ul li{
 	text-shadow:none;
 }
 
+#loadingImg{
+	margin: 0 auto;
+}
 @media (max-width: 768px) {
 	.img-responsive{
 		margin: 0 auto;

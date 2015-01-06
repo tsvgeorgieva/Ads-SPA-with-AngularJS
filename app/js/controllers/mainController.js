@@ -1,9 +1,11 @@
 adsModule.controller('MainController', function($scope, mainData, constants,$log){
 	$scope.constants = constants;
+	$scope.ready = false;
 
-	mainData.getAllAds(
+	mainData.getAds(
 		function success(data, status, headers, config){
 			$scope.ads = data.ads;
+			$scope.ready = true;
 		}, 
 		function error(data, status, headers, config){
 			$log.error(data);
@@ -34,11 +36,14 @@ adsModule.controller('MainController', function($scope, mainData, constants,$log
 	);
 
 	function onFilterClicked(townId, categoryId){
+		delete $scope.ads;
+		$scope.ready = false;
 		mainData.getAdsWithFilters(
 			function success(data, status, headers, config){
 				$scope.ads = data.ads;
 				$scope.selectedTown = townId;
 				$scope.selectedCategory = categoryId;
+				$scope.ready = true;
 			}, 
 			function error(data, status, headers, config){
 				$log.error(data);
