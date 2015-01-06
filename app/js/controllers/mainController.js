@@ -1,11 +1,15 @@
 adsModule.controller('MainController', function($scope, mainData, constants,$log){
 	$scope.constants = constants;
 	$scope.ready = false;
+	$scope.noAds = false;
+
+	// TODO
+	$scope.isLoggedIn = false;
+
 
 	mainData.getAds(
 		function success(data, status, headers, config){
-			$scope.ads = data.ads;
-			$scope.ready = true;
+			initializeAds(data)
 		}, 
 		function error(data, status, headers, config){
 			$log.error(data);
@@ -35,15 +39,15 @@ adsModule.controller('MainController', function($scope, mainData, constants,$log
 		}
 	);
 
-	function onFilterClicked(townId, categoryId){
+	$scope.onFilterClicked = function onFilterClicked(townId, categoryId){
 		delete $scope.ads;
 		$scope.ready = false;
+		$scope.noAds = false;
 		mainData.getAdsWithFilters(
 			function success(data, status, headers, config){
-				$scope.ads = data.ads;
+				initializeAds(data);
 				$scope.selectedTown = townId;
 				$scope.selectedCategory = categoryId;
-				$scope.ready = true;
 			}, 
 			function error(data, status, headers, config){
 				$log.error(data);
@@ -53,5 +57,12 @@ adsModule.controller('MainController', function($scope, mainData, constants,$log
 		);
 	}
 
-	$scope.onFilterClicked = onFilterClicked;
+	function initializeAds(data){
+		if(data.ads.length == 0){
+			$scope.noAds = true;
+		} else{
+			$scope.ads = data.ads;
+		}
+		$scope.ready = true;
+	}
 });
