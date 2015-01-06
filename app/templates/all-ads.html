@@ -14,11 +14,7 @@
 					<div class="panel-title">
 						<div class="row">
 							<h5 class="col-sm-9">{{ad.title}}</h5>
-							<div class="col-sm-3">
-								<div class="">
-									{{ad.date | date:'d MMM yyyy HH:mm:ss'}}
-								</div>
-							</div>
+							<div class="col-sm-3">{{ad.date | date:'d MMM yyyy HH:mm:ss'}}</div>
 						</div>
 					</div>
 				</div>
@@ -26,10 +22,7 @@
 					<div class="col-sm-3 col-xs-12 pull-right">
 						<img class="img-responsive" src="" ng-src="{{ad.imageDataUrl || constants.defaultImage}}"/>
 					</div>
-					<div class="col-sm-9 col-xs-12">
-						<div class="col-xs-12">{{ad.text}}</div>
-					</div>
-					
+					<div class="col-sm-9 col-xs-12">{{ad.text}}</div>
 				</div>
 				<div class="panel-footer">
 					<div class="row">
@@ -44,25 +37,25 @@
 	<div class="col-md-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title">
-					Categories
-				</div>
+				<div class="panel-title">Categories</div>
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-pills nav-stacked">
-				  <li ng-repeat="category in categories" ng-class="{'active': category.id == selectedCategory}" id="category{{category.id}}"><a ng-click="onFilterClicked(selectedTown, category.id)">{{category.name}}</a></li>
+					<li ng-repeat="category in categories" ng-class="{'active': category.id == selectedCategory}" id="category{{category.id}}">
+						<a ng-click="onFilterClicked(selectedTown, category.id)">{{category.name}}</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title">
-					Towns
-				</div>
+				<div class="panel-title">Towns</div>
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-pills nav-stacked">
-				  <li ng-repeat="town in towns" ng-class="{'active': town.id == selectedTown}"><a ng-click="onFilterClicked(town.id, selectedCategory)">{{town.name}}</a></li>
+					<li ng-repeat="town in towns" ng-class="{'active': town.id == selectedTown}">
+						<a ng-click="onFilterClicked(town.id, selectedCategory)">{{town.name}}</a>
+					</li>
 				</ul>
 			</div>
 		</div>
